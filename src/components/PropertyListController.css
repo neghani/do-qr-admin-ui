@@ -1,0 +1,15 @@
+.PropertyListController{
+    display: flex;
+    background-color: red;
+}
+.property-row{
+    width: 100%;
+}
+
+.last-col{
+    margin-right: auto;
+}
+
+.details{
+ display: none;
+}
