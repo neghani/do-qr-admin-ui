@@ -1,14 +1,13 @@
 // src/pages/PropertyList.tsx
-import React, { useEffect, useState } from "react";
-import {  Container, Button, Alert, } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Container, Alert } from "react-bootstrap";
 import { fetchAllProperties } from "../controller/propertyController";
 import PropertyListController from "../components/PropertyListController";
-// import { format } from "date-fns";
 
 const PropertyList = () => {
   const [properties, setProperties] = useState([]);
   const [error, setError] = useState("");
-
+  const [activeProperty, setActiveProperty] = useState(0);
   useEffect(() => {
     const getProperties = async () => {
       try {
@@ -27,11 +26,26 @@ const PropertyList = () => {
   return (
     <Container className="mt-5">
       {error && <Alert variant="danger">{error}</Alert>}
-      <h2>Property List</h2>
+      <div className="row">
+        <div className="col-3">
+          <input
+            type="password"
+            id="inputPassword5"
+            className="form-control"
+            placeholder="Search Property"
+          />
+          <PropertyListController
+            properties={properties}
+          ></PropertyListController>
+        </div>
+        <div className="col-9">
+          <img src="https://placehold.co/300x200/png"></img>
+        </div>
+      </div>
+      '
       {/* <Button variant="primary" onClick={() => handleShow("add")}>
         Add Property
       </Button> */}
-      <PropertyListController></PropertyListController>
       {/* <Table striped bordered hover className="mt-3">
         <thead>
           <tr>

@@ -1,15 +1,37 @@
-.PropertyListController{
-    display: flex;
-    background-color: red;
+.PropertyListController {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 }
-.property-row{
-    width: 100%;
+.property-row {
+  width: 100%;
+  background-color: #f6f6f6;
+  margin: 4px 0px;
+
 }
 
-.last-col{
-    margin-right: auto;
+/* .property-row:last-child {
+  border-bottom: none;
+} */
+
+.last-col {
+  margin-right: auto;
+}
+.button {
+  width: 40px !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.detail {
+  margin-right: auto;
+}
+.property-item {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
 }
 
-.details{
- display: none;
+.arrow {
+  padding-right: 8px;
 }

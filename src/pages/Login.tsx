@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Login = (props) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -31,7 +31,8 @@ const Login = (props) => {
       });
   };
 
-  const onButtonClick = () => {
+  const onButtonClick = (e: any) => {
+    e.preventDefault();
     // Set initial error values to empty
     setEmailError("");
     setPasswordError("");
@@ -46,46 +47,44 @@ const Login = (props) => {
       setPasswordError("Please enter a password");
       return;
     }
-
     logIn();
-    // Authentication calls will be made here...
   };
 
   return (
-    <div className={"mainContainer"}>
-      <div className={"titleContainer"}>
-        <div>Login</div>
-      </div>
-      <br />
-      <div className={"inputContainer"}>
-        <input
-          value={username}
-          placeholder="Enter your email here"
-          onChange={(ev) => setUsername(ev.target.value)}
-          className={"inputBox"}
-        />
+    <main className="form-signin  m-auto">
+      <form className="form-width" onSubmit={onButtonClick}>
+        <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+
+        <div className="form-floating">
+          <input
+            type="text"
+            className="form-control"
+            id="floatingInput"
+            placeholder="Enter your email here"
+            onChange={(ev) => setUsername(ev.target.value)}
+          />
+
+          <label>Username</label>
+        </div>
+        <div className="form-floating">
+          <input
+            type="password"
+            className="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            value={password}
+            onChange={(ev) => setPassword(ev.target.value)}
+          />
+          <label>Password</label>
+        </div>
         <label className="errorLabel">{emailError}</label>
-      </div>
-      <br />
-      <div className={"inputContainer"}>
-        <input
-          value={password}
-          placeholder="Enter your password here"
-          onChange={(ev) => setPassword(ev.target.value)}
-          className={"inputBox"}
-        />
         <label className="errorLabel">{passwordError}</label>
-      </div>
-      <br />
-      <div className={"inputContainer"}>
-        <input
-          className={"inputButton"}
-          type="button"
-          onClick={onButtonClick}
-          value={"Log in"}
-        />
-      </div>
-    </div>
+        <button className="btn btn-primary w-100 py-2" type="submit">
+          Sign in
+        </button>
+        <p className="mt-5 mb-3 text-body-secondary">© 2017–2024</p>
+      </form>
+    </main>
   );
 };
 

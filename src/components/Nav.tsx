@@ -6,9 +6,20 @@ import logo from "../../public/icon.png";
 import { useEffect } from "react";
 function Navigation() {
   let token = localStorage.getItem("token") || "";
-
+  function Logout() {
+    window.localStorage.removeItem("token");
+    window.location.href = "/login";
+  }
   function AuthTags() {
-    return <>{token ? "Loggedin" : "Not logged in"}</>;
+    return (
+      <>
+        {token ? (
+          <button onClick={Logout} className="btn btn-default">
+            Logout
+          </button>
+        ) : null}
+      </>
+    );
   }
   useEffect(() => {
     console.log("sdf");
