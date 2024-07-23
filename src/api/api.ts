@@ -30,10 +30,14 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
+    console.error("Response error:", error);
     if (error.response?.statusText == "jwt expired") {
       window.location.href = '/login'
     }
-    console.error("Response error:", error);
+    if (!error.response) {
+      alert("Server is not responding.")
+    }
+    
     return Promise.reject(error);
   }
 );

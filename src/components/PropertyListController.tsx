@@ -3,7 +3,7 @@ function PropertyListController({ properties }) {
   return (
     <div className="PropertyListController ">
       {properties.length == 0 ? "No properties" : ""}
-      {properties.map((property) => (
+      {properties.map((property:any) => (
         <PropertyListRow
           key={property?.id}
           property={property}

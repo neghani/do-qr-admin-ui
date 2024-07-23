@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { loginWithAxios } from "../controller/propertyController";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -10,25 +11,16 @@ const Login = () => {
   const navigate = useNavigate();
 
   // Log in a user using email and password
-  const logIn = () => {
-    fetch("http://localhost:3000/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ username, password }),
-    })
-      .then((r) => r.json())
-      .then((r) => {
-        console.log(r);
-
-        if (r.token) {
-          localStorage.setItem("token", r.token);
-          navigate("/");
-        } else {
-          window.alert("Wrong email or password");
-        }
-      });
+  const logIn = async () => {
+    try {
+      const session = await loginWithAxios({ username, password });
+      localStorage.setItem("token", session.token);
+      setPasswordError("Success");
+      navigate("/");
+    } catch (error: any) {
+      setPasswordError(error.message);
+      console.log(error);
+    }
   };
 
   const onButtonClick = (e: any) => {

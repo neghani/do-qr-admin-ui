@@ -36,7 +36,7 @@ function Navigation() {
             <Nav.Link href="/">Home</Nav.Link>
             <NavDropdown title="Properties" id="basic-nav-dropdown">
               <NavDropdown.Item href="/properties">View All</NavDropdown.Item>
-              <NavDropdown.Item href="/properties">
+              <NavDropdown.Item href="/new-property">
                 Create property
               </NavDropdown.Item>
             </NavDropdown>

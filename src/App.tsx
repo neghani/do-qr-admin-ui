@@ -6,6 +6,7 @@ import "./App.css";
 import AuthGuard from "./guards/guards";
 import PropertyList from "./pages/PropertyList";
 import Navigation from "./components/Nav";
+import { CreateNewProperty } from "./pages/CreateNewProperty";
 
 function App() {
   return (
@@ -25,10 +26,13 @@ function App() {
             path="/properties"
             element={<AuthGuard component={<PropertyList />} />}
           />
+          <Route
+            key="properties"
+            path="/new-property"
+            element={<AuthGuard component={<CreateNewProperty />} />}
+          />
 
-          <Route key="Register" path="/login" element={<Login />}>
-            {" "}
-          </Route>
+          <Route key="Register" path="/login" element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

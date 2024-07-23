@@ -10,8 +10,26 @@ export const fetchAllProperties = async () => {
     console.log(error);
     throw error;
   }
-}
+};
 
+export const createNewProperty = async (data: any) => {
+  try {
+    const response = await api.post("/property", data);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const loginWithAxios = async (credentials: any) => {
+  try {
+    const response = await api.post("/auth/login", credentials);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 
 // Example function to fetch all units
 export const fetchAllUnits = async () => {
