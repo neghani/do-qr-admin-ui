@@ -1,10 +1,13 @@
 // src/api/apiService.ts
 import api from "../api/api";
 
-// Example function to fetch all properties
-export const fetchAllProperties = async () => {
+// Example function to fetch all properties with search parameters
+export const fetchAllProperties = async (searchParams = {}) => {
   try {
-    const response = await api.get("/property");
+    const params = new URLSearchParams(searchParams).toString();
+    const url = `/property?${params}`;
+    console.log("Request URL:", url); // Log the request URL
+    const response = await api.get(url);
     return response.data;
   } catch (error) {
     console.log(error);
@@ -21,6 +24,15 @@ export const createNewProperty = async (data: any) => {
     throw error;
   }
 };
+export const createProperty = async (propertyData: any) => {
+  try {
+    const response = await api.post("/properties", propertyData);
+    return response.data;
+  } catch (error) {
+    console.error("Failed to create property:", error);
+    throw error;
+  }
+};
 
 export const loginWithAxios = async (credentials: any) => {
   try {
@@ -32,31 +44,34 @@ export const loginWithAxios = async (credentials: any) => {
 };
 
 // Example function to fetch all units
-export const fetchAllUnits = async () => {
+// export const fetchAllUnits = async () => {
+//   try {
+//     const response = await api.get("/units");
+//     return response.data;
+//   } catch (error) {
+//     console.error("Failed to fetch units:", error);
+//     throw error;
+//   }
+// };
+
+// Example function to create a property
+
+// Fetch property by ID
+export const fetchPropertyById = async (id: string) => {
   try {
-    const response = await api.get("/units");
+    const response = await api.get(`/property/${id}`);
     return response.data;
   } catch (error) {
-    console.error("Failed to fetch units:", error);
+    console.error("Failed to fetch property:", error);
     throw error;
   }
 };
 
-// Example function to create a property
-export const createProperty = async (propertyData: any) => {
-  try {
-    const response = await api.post("/properties", propertyData);
-    return response.data;
-  } catch (error) {
-    console.error("Failed to create property:", error);
-    throw error;
-  }
-};
 
 // Example function to update a property
 export const updateProperty = async (propertyId: string, propertyData: any) => {
   try {
-    const response = await api.put(`/properties/${propertyId}`, propertyData);
+    const response = await api.put(`/property/${propertyId}`, propertyData);
     return response.data;
   } catch (error) {
     console.error("Failed to update property:", error);
@@ -74,3 +89,4 @@ export const deleteProperty = async (propertyId: string) => {
     throw error;
   }
 };
+

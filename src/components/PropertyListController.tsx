@@ -1,22 +1,24 @@
 import "./PropertyListController.css";
-function PropertyListController({ properties }) {
+
+function PropertyListController({ properties, onPropertyClick }) {
   return (
-    <div className="PropertyListController ">
-      {properties.length == 0 ? "No properties" : ""}
+    <div className="PropertyListController">
+      {properties.length === 0 ? "No properties" : ""}
       {properties.map((property:any) => (
         <PropertyListRow
           key={property?.id}
           property={property}
-        ></PropertyListRow>
+          onPropertyClick={onPropertyClick}
+        />
       ))}
     </div>
   );
 }
 
-function PropertyListRow({ property }) {
+function PropertyListRow({ property, onPropertyClick }) {
   return (
-    <div className="property-row">
-      <PropertyRowItem item={property}></PropertyRowItem>
+    <div className="property-row" onClick={() => onPropertyClick(property.id)}>
+      <PropertyRowItem item={property} />
     </div>
   );
 }
@@ -25,7 +27,7 @@ function PropertyRowItem({ item }) {
   return (
     <div className="property-item">
       <div className="image">
-        <img src="https://placehold.co/60x60/png" />
+        <img src="https://placehold.co/60x60/png" alt="Property" />
       </div>
       <div className="name">
         <small className="text-muted">Name</small>
@@ -43,4 +45,5 @@ function PropertyRowItem({ item }) {
     </div>
   );
 }
+
 export default PropertyListController;

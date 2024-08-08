@@ -40,6 +40,12 @@ function Navigation() {
                 Create property
               </NavDropdown.Item>
             </NavDropdown>
+            <NavDropdown title="Unit" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/unit">View All</NavDropdown.Item>
+              <NavDropdown.Item href="/new-units">
+                Create Unit
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
         {<AuthTags></AuthTags>}

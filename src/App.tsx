@@ -5,8 +5,10 @@ import "./App.css";
 
 import AuthGuard from "./guards/guards";
 import PropertyList from "./pages/PropertyList";
+import Unit from "./pages/UnitList";
 import Navigation from "./components/Nav";
 import { CreateNewProperty } from "./pages/CreateNewProperty";
+import CreateNewUnit from "./pages/CreateNewUnit";
 
 function App() {
   return (
@@ -30,6 +32,16 @@ function App() {
             key="properties"
             path="/new-property"
             element={<AuthGuard component={<CreateNewProperty />} />}
+          />
+             <Route
+            key="unit"
+            path="/unit"
+            element={<AuthGuard component={<Unit />} />}
+          />
+             <Route
+            key="unit"
+            path="/new-units"
+            element={<AuthGuard component={<CreateNewUnit />} />}
           />
 
           <Route key="Register" path="/login" element={<Login />}></Route>
